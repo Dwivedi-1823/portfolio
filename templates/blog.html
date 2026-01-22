@@ -1,9 +1,38 @@
 
+
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Blog & Case Studies</h2>
-<ul>
-<li>Designing End-to-End Azure MLOps Pipelines</li>
-<li>Fake News Detection: From NLP to Deployment</li>
-</ul>
+<section class="blog-header">
+    <h2 class="section-title">Blog & Case Studies</h2>
+    <p class="section-subtitle">Writing about machine learning, engineering, and data strategy.</p>
+</section>
+
+<section class="blog-list">
+    <article class="blog-item">
+        <div class="blog-meta">
+            <span class="blog-date">Jan 2024</span>
+            <span class="blog-category">MLOps</span>
+        </div>
+        <h3 class="blog-title">
+            <a href="#">Designing End-to-End Azure MLOps Pipelines</a>
+        </h3>
+        <p class="blog-excerpt">
+            A deep dive into automating the machine learning lifecycle using Azure DevOps, Docker, and Model Registry.
+        </p>
+    </article>
+
+    <article class="blog-item">
+        <div class="blog-meta">
+            <span class="blog-date">Dec 2023</span>
+            <span class="blog-category">NLP</span>
+        </div>
+        <h3 class="blog-title">
+            <a href="/projects/fake-news">Fake News Detection: From NLP to Deployment</a>
+        </h3>
+        <p class="blog-excerpt">
+            Exploring the challenges of text classification and deploying a real-time detection model.
+        </p>
+    </article>
+</section>
 {% endblock %}

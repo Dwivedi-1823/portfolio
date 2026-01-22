@@ -1,6 +1,96 @@
-
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Piyush Kumar – Data Scientist</h1>
-<a href="/projects/fake-news">Fake News Detection Project</a>
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-text">
+            <h1>Piyush Kumar</h1>
+            <h2 class="cyan-text">Data Scientist | ML Enthusiast</h2>
+            <p>I specialize in turning complex data into actionable insights and building intelligent models to solve real-world problems. Experienced in Python, Deep Learning, and MLOps.</p>
+            
+            <div class="hero-btns">
+                <a href="/blog" class="btn-fill">View Blog</a>
+                <a href="#projects" class="btn-outline">View Projects</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Piyush Kumar" class="profile-img">
+                <div class="profile-glow"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="projects">
+    <div class="container"> <h3 class="section-label">Featured Projects</h3>
+        <div class="project-grid">
+            <article class="project-card proj-nlp">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <span class="category">NLP MODEL</span>
+                    <h3>Fake News Detection</h3>
+                    <p>An NLP-based project using Scikit-Learn to classify news authenticity with 94% accuracy.Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development</p>
+                    <div class="card-links">
+                        <a href="#" class="live-link">Live Demo</a>
+                        <a href="#" class="github-link">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card proj-vision">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <span class="category">COMPUTER VISION</span>
+                    <h3>Object Detection</h3>
+                    <p>Real-time system using YOLOv8 to detect and track objects in video streams.</p>
+                    <div class="card-links">
+                        <a href="#" class="live-link">Live Demo</a>
+                        <a href="#" class="github-link">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card proj-data">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <span class="category">DATA ANALYSIS</span>
+                    <h3>Stock Predictor</h3>
+                    <p>Time-series forecasting using LSTM networks to predict stock market trends.</p>
+                    <div class="card-links">
+                        <a href="#" class="live-link">Live Demo</a>
+                        <a href="#" class="github-link">GitHub</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="contact-card">
+            <div class="contact-info">
+                <h4>Let's Talk</h4>
+                <p>I am looking for new opportunities. My inbox is always open!</p>
+                <div class="contact-details">
+                    <p>📍 New Town, West Bengal</p>
+                    <p>📧 yourname@email.com</p>
+                </div>
+            </div>
+
+            <div id="form-container">
+                <form class="contact-form" id="contact-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                    <button type="submit" id="submit-btn">SEND MESSAGE</button>
+                </form>
+
+                <div id="form-success" style="display: none;">
+                    <h4 style="color: #22d3ee;">✓ Message Sent!</h4>
+                    <p>I'll get back to you shortly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

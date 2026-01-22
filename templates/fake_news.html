@@ -1,6 +1,62 @@
 
+
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Fake News Detection – Case Study</h2>
-<p>POST text to <code>/api/fake-news</code> to get prediction.</p>
+<section class="project-detail">
+    <header class="project-header">
+        <h2 class="project-title">Fake News Detection – Case Study</h2>
+        <div class="project-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Python</span>
+            <span class="tag">Machine Learning</span>
+        </div>
+    </header>
+
+    <div class="project-intro">
+        <h3>Overview</h3>
+        <p>This project utilizes Natural Language Processing (NLP) to identify and flag misinformation in news articles. By analyzing linguistic patterns and metadata, the model provides a probability score for the authenticity of the text.</p>
+    </div>
+
+    <section class="model-demo">
+        <div class="demo-card">
+            <h3>Try the Model</h3>
+            <p class="demo-instruction">Paste news text below to get a prediction from our API.</p>
+            
+            <form id="fakeNewsForm" class="prediction-form">
+                <textarea id="newsContent" placeholder="Paste news article content here..." required></textarea>
+                <button type="submit" class="btn-predict">Analyze Authenticity</button>
+            </form>
+
+            <div id="resultDisplay" class="prediction-result" style="display: none;">
+                <h4>Prediction Result:</h4>
+                <div id="predictionOutput"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="technical-docs">
+        <h3>API Reference</h3>
+        <p>Developers can integrate this model by sending a <code>POST</code> request to:</p>
+        <pre><code>/api/fake-news</code></pre>
+    </div>
+</section>
+<script>
+document.getElementById('fakeNewsForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = document.getElementById('newsContent').value;
+    const resultDiv = document.getElementById('resultDisplay');
+    const output = document.getElementById('predictionOutput');
+
+    const response = await fetch('/api/fake-news', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text: text})
+    });
+    
+    const data = await response.json();
+    resultDiv.style.display = 'block';
+    output.innerHTML = `<strong>${data.prediction}</strong> (Score: ${data.probability})`;
+});
+</script>
 {% endblock %}

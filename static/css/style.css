@@ -1,3 +1,518 @@
 
-body { font-family: Arial; margin: 20px; }
-nav a { margin-right: 15px; }
+
+/*1. Global Variables & Modern Dark Theme*/
+:root {
+    --bg-dark: #0b0d17;       /* Deep Space Dark */
+    --bg-nav: #111420;        /* Slightly lighter nav */
+    --cyan: #22d3ee;          /* Vibrant Cyan accent */
+    --text-white: #ffffff;
+    --text-gray: #94a3b8;
+    --card-bg: #161a2a;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem; /* Adds space between menu items */
+    list-style: none;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: white;
+}
+
+/* .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+} */
+
+.nav-links a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--cyan);
+}
+
+.resume-btn {
+    border: 2px solid var(--cyan);
+    color: var(--cyan) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 700 !important;
+}
+
+.resume-btn:hover {
+    background: var(--cyan);
+    color: var(--bg-dark) !important;
+}
+
+/* 3. Hero Section (Matches Jacob Reference) */
+.hero {
+    padding: 80px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1.2;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
+}
+
+.cyan-text {
+    color: var(--cyan);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin-bottom: 2.5rem;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* 4. Profile Image Styling (The Fix) */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover; /* Ensures image isn't squashed */
+    border-radius: 24px; /* Matches modern UI style */
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* The Cyan Glow behind your head */
+.profile-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: var(--cyan);
+    filter: blur(120px);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+
+.section-label {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 4px;
+    background: var(--cyan);
+}
+
+.project-grid {
+    display: grid;
+    /* This forces 3 columns. Use 1fr to ensure they are equal width */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; /* The 'breathing room' between project cards */
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* --- INDIVIDUAL CARD STYLING --- */
+/* .project-card {
+    position: relative;
+    background-color: #161a2a;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden; 
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+} */
+
+.project-card {
+    position: relative;
+    background-color: #161a2a;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 400px;
+    display: flex;
+    /* CHANGE: Centers content vertically so the top isn't vacant */
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.4s ease;
+}
+
+/* The dark tint for text readability */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creates the dark bottom-to-top fade you see in your image */
+    background: linear-gradient(to bottom, rgba(11, 13, 23, 0.2), rgba(11, 13, 23, 0.95));
+    z-index: 1;
+    transition: 0.3s ease;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2; /* Sits on top of the image and overlay */
+    padding: 2rem;
+    width: 100%;
+}
+
+/* --- UNIQUE BACKGROUND IMAGES --- */
+/* Replace these placeholder URLs with your actual image paths */
+.proj-nlp { background-image: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1000'); }
+.proj-vision { background-image: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1000'); }
+.proj-data { background-image: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1000'); }
+
+/* --- HOVER EFFECTS --- */
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: #22d3ee;
+}
+
+.project-card:hover .card-overlay {
+    /* We keep the top transparent to show the image, but keep the bottom dark */
+    background: linear-gradient(
+        to bottom, 
+        rgba(34, 211, 238, 0.1), /* Subtle cyan tint at the top */
+        rgba(11, 13, 23, 0.8),   /* Dark middle transition */
+        rgba(11, 13, 23, 0.95)   /* Deep dark bottom to protect the text */
+    );
+}
+
+/* Enhances distinction on hover */
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: #22d3ee; /* Glowing cyan border on hover */
+    box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1);
+}
+
+.project-card h3 {
+    margin: 1rem 0; /* Creates space around the title */
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.project-card:hover h3,
+.project-card:hover p {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+.project-card .category {
+    color: #94a3b8; /* Grayish text for labels like "NLP MODEL" */
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-card p {
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.project-card a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-content {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Fixes mobile view */
+}
+
+.contact-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-text h4 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.contact-text p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.contact-form {
+    flex: 1.2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: #0b0d17;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 8px;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form button {
+    background: #22d3ee;
+    color: #0b0d17;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+/* --- THE ALIGNMENT MASTER RULE --- */
+/* Every inner wrapper MUST use this class */
+.container {
+    max-width: 1200px; /* Standard width */
+    margin: 0 auto;    /* Centers the content */
+    padding: 0 5%;     /* Unified side gap */
+    width: 100%;
+}
+
+/* 2. Header Fix */
+.navbar {
+    background: var(--bg-nav);
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.nav-container {
+    /* We are making this identical to the .container class */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 3. Projects Fix */
+.projects {
+    padding: 60px 0; /* Remove horizontal padding here */
+}
+
+/* 4. Contact Fix */
+.contact-section {
+    padding: 80px 0;
+}
+
+.contact-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split into two equal halves */
+    gap: 60px;
+    padding: 60px;
+    background: #161a2a; /* Matches your project cards */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    min-height: 450px;
+    align-items: start;
+    transition: var(--transition);
+}
+
+/* Keep the hover effect separate so it only triggers on mouse-over */
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--cyan);
+    box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1);
+}
+
+/* Container for the buttons */
+/* Container for the buttons */
+.card-links {
+    display: flex;
+    gap: 12px; /* Slightly tighter gap */
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Updated Smaller Button Style */
+.card-links a {
+    text-decoration: none;
+    padding: 8px 16px;   /* Reduced from 10px 20px */
+    border-radius: 6px;  /* Slightly sharper corners for a smaller look */
+    font-size: 0.8rem;   /* Reduced from 0.9rem */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    min-width: 100px;    /* Ensures both buttons are the same width */
+    text-align: center;
+}
+
+/* Style for Live Demo (Solid Cyan) */
+.live-link {
+    background: #22d3ee;
+    color: #0b0d17 !important; /* Force dark text on light background */
+}
+
+/* Style for GitHub (Outlined) */
+.github-link {
+    background: transparent;
+    color: #22d3ee !important;
+    border: 1px solid #22d3ee;
+}
+
+/* Hover effects */
+.live-link:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+}
+
+.github-link:hover {
+    background: rgba(34, 211, 238, 0.1);
+    transform: translateY(-3px);
+}
+
+.contact-info h4 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.contact-details {
+    margin-top: 40px;
+    color: #94a3b8;
+    line-height: 2;
+}
+
+/* Make it stack vertically on mobile */
+@media (max-width: 768px) {
+    .contact-card {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 30px;
+    }
+}
+
+/* Styling for the loading state */
+#submit-btn.loading {
+    background: #1e293b;
+    color: #94a3b8;
+    cursor: not-allowed;
+    position: relative;
+}
+
+#submit-btn.loading::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid #22d3ee;
+    border-top-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    animation: spin 0.8s linear infinite;
+}
+
+#form-container {
+    transition: opacity 0.3s ease;
+}
+
+#form-success {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Mobile compatibility */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* 1 column for mobile */
+    }
+}

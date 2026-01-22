@@ -1,16 +1,48 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Piyush Kumar | Data Scientist</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piyush Kumar | Data Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<nav>
-<a href="/">Home</a>
-<a href="/blog">Blog</a>
-<a href="/download-resume">Resume</a>
-</nav>
-{% block content %}{% endblock %}
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">Piyush Kumar</a>
+                <nav class="nav-links">
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('blog') }}">Blog</a>
+                    <a href="{{ url_for('education') }}">Education</a>
+                    <a href="{{ url_for('download_resume') }}" class="resume-btn">Resume</a>
+                </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents page reload
+
+            // 1. Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+
+            // 2. Simulate an API call (e.g., to Render or EmailJS)
+            setTimeout(() => {
+                // 3. Hide form and show success message
+                contactForm.style.display = 'none';
+                successMessage.style.display = 'block';
+            }, 2000); // 2 second delay
+        });
+    </script>
 </body>
 </html>
