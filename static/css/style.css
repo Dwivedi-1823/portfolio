@@ -574,14 +574,116 @@ body {
 }
 
 /* Mobile compatibility */
-@media (max-width: 992px) {
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+/* --- ULTIMATE RESPONSIVE PATCH --- */
+
+/* 1. Global Reset for Mobile */
+@media (max-width: 1024px) {
+    .hero-text h1 {
+        font-size: 3rem; /* Shrink giant headers */
+    }
+    
+    .profile-img {
+        width: 320px;
+        height: 320px;
     }
 }
 
 @media (max-width: 768px) {
+    /* 2. Navbar Fix: Stack logo and links */
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* 3. Hero Section: Image on top, Text below */
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero-container {
+        flex-direction: column-reverse; /* Puts image at top, text at bottom */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-text p {
+        margin: 0 auto 1.5rem auto; /* Centers the paragraph */
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .profile-img {
+        width: 260px;
+        height: 260px;
+    }
+
+    /* 4. Projects: Fix height & grid */
     .project-grid {
-        grid-template-columns: 1fr; /* 1 column for mobile */
+        grid-template-columns: 1fr !important; /* Force single column */
+    }
+
+    .project-card {
+        min-height: 320px; /* Reduce height so it doesn't take the whole screen */
+    }
+
+    /* 5. Contact Section Fix */
+    .contact-card {
+        grid-template-columns: 1fr !important;
+        padding: 25px;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .contact-info h4 {
+        font-size: 2rem;
+    }
+
+    .social-item {
+        justify-content: center;
+        transform: none !important; /* Disable hover shift on touch screens */
+    }
+
+    .social-text {
+        text-align: left; /* Keep text aligned inside the centered button */
+    }
+}
+
+/* 6. Extra Small Screens (Small Phones) */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-btns {
+        flex-direction: column; /* Stack buttons vertically */
+        width: 100%;
+    }
+
+    .hero-btns a, .resume-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .card-links {
+        flex-direction: column; /* Stack 'Live Demo' and 'GitHub' buttons */
+    }
+    
+    .card-links a {
+        width: 100%;
     }
 }
