@@ -25,7 +25,7 @@ def download_resume():
     resume_path = os.path.join(app.root_path, 'static', 'resume')
     return send_from_directory(
         directory=resume_path, 
-        path='Piyush_Kumar_Data_Scientist.pdf', 
+        path='Piyush Kumar_DS_Jan-2026.pdf', 
         as_attachment=True
     )
 

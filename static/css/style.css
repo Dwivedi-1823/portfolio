@@ -494,6 +494,75 @@ body {
     animation: fadeIn 0.5s ease forwards;
 }
 
+.contact-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-links h5 {
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.social-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05); /* Subtle dark card */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-item:hover {
+    background: rgba(34, 211, 238, 0.1); /* Glow effect on hover */
+    border-color: #22d3ee;
+    transform: translateX(5px);
+}
+
+.social-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.social-text .label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.social-text .value {
+    color: #f8fafc;
+    font-weight: 500;
+}
+
+.direct-mail-btn {
+    margin-top: 10px;
+    background-color: #22d3ee;
+    color: #0f172a;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.direct-mail-btn:hover {
+    background-color: #0ea5e9;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
